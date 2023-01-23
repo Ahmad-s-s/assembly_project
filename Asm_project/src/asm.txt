@@ -1,0 +1,4 @@
+MOV eax, 13
+mov ecx, 1
+add ecx, 1
+xor ecx, ebx

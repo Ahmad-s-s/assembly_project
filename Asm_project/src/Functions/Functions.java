@@ -202,6 +202,40 @@ public class Functions {
         return res;
     }
 
+    public static ArrayList<Integer> neg(ArrayList<Integer> reg) {
+        if (reg.get(reg.size()-1) == 1) {
+            reg.set(reg.size()-1, 0);
+        }else{
+            reg.set(reg.size()-1, 1);
+        }
+        return reg;
+    }
+
+    public static ArrayList<Integer> mov(ArrayList<Integer> des, ArrayList<Integer> src) {
+        ArrayList<Integer> res = new ArrayList<>(src);
+        des = res;
+        return res;
+    }
+
+    public static ArrayList<Integer> mov(ArrayList<Integer> des, String val) {
+        ArrayList<Integer> res = new ArrayList<>();
+        if (val.length() < des.size()) {
+            int t = val.length();
+            for (int i = 0; i < des.size()-t; i++) {
+                val = val.concat("0");
+            }
+        }
+        for (int i = 0; i < val.length(); i++) {
+            if (val.charAt(i) == '1') {
+                res.add(1);
+            }else {
+                res.add(0);
+            }
+        }
+        des = res;
+        return res;
+    }
+
     public static ArrayList<Integer> add(ArrayList<Integer> reg, ArrayList<Integer> reg2) {
         ArrayList<Integer> res = new ArrayList<>();
         int cin = 0;
@@ -229,7 +263,6 @@ public class Functions {
                 continue;
             }
         }
-        reg = res;
         Flags.CF = cin;
         setPF(res);
         setSF(res);
@@ -241,11 +274,18 @@ public class Functions {
         } else {
             Flags.OF = 0;
         }
+        reg = res;
         return res;
     }
 
     public static ArrayList<Integer> add(ArrayList<Integer> reg, String strAdd) {
         ArrayList<Integer> res = new ArrayList<>();
+        if (strAdd.length() < reg.size()) {
+            int t = strAdd.length();
+            for (int i = 0; i < reg.size()-t; i++) {
+                strAdd = strAdd.concat("0");
+            }
+        }
         int cin = 0;
         Integer step = 0;
         for (int i = 0; i < reg.size(); i++) {
@@ -271,7 +311,6 @@ public class Functions {
                 continue;
             }
         }
-        reg = res;
         Flags.CF = cin;
         setPF(res);
         setSF(res);
@@ -283,6 +322,7 @@ public class Functions {
         } else {
             Flags.OF = 0;
         }
+        reg = res;
         return res;
     }
 
@@ -356,5 +396,4 @@ public class Functions {
         reg = res;
         return res;
     }
-
 }
